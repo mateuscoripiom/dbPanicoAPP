@@ -48,3 +48,56 @@ create table tbObraPersonagem(
 	foreign key (idObra) references tbObra(idObra),
 	foreign key (idPerson) references tbPersonagens(idPerson)
 );
+
+
+
+-- SQL SERVER
+create database dbPanico;
+
+use dbPanico;
+
+create table tbUser(
+	idUser int primary key identity,
+	nome varchar not null,
+    senha varchar not null
+);
+
+create table tbObra(
+	idObra int primary key identity,
+    nome varchar not null,
+    descricao varchar not null,
+    imagem varchar not null,
+    diretores varchar not null,
+    avaliacao int
+);
+
+create table tbPersonagens(
+	idPerson int primary key identity,
+    nomePerson varchar not null,
+    descricaoPerson varchar not null,
+    imagemPerson varchar not null,
+    situacao int not null
+);
+
+create table tbAtor(
+	idAtor int primary key identity,
+    nomeElenco varchar not null,
+    descricaoElenco varchar not null, 
+    imagemElenco varchar not null, 
+);
+
+create table tbAtorPersonagem(
+	idPerson int,
+    idAtor int,
+    Primary Key (idPerson, idAtor),
+	foreign key (idPerson) references tbPersonagens(idPerson),
+	foreign key (idAtor) references tbAtor(idAtor)
+);
+
+create table tbObraPersonagem(
+	idObra int,
+    idPerson int,
+    Primary Key (idObra, idPerson),
+	foreign key (idObra) references tbObra(idObra),
+	foreign key (idPerson) references tbPersonagens(idPerson)
+);
